@@ -4,8 +4,8 @@ from tkinter import *
 
 class Block:
 	def __init__(self, master):
-		self.b_save = Button(master, text='Сохранить')
-		self.b_load = Button(master, text='Загрузить')
+		self.b_save = Button(master, text='Save')
+		self.b_load = Button(master, text='loadgame')
 		self.text_label = Label(master, bg='black', fg='white', width=40)
 
 		self.b_save.bind('<Button-1>', self.savegame)
@@ -33,11 +33,11 @@ class Block:
 					fpath = path+'\\' + i
 					dpath = deskpath + '\\' + i
 					shutil.copyfile(fpath, dpath)
-					self.to_label('Игра успешно сохранена')
+					self.to_label('Save OK')
 			else:		
 				os.mkdir(deskpath, mode=0o777)
 		else:
-			self.to_label("Не могу найти файл сохранения сук")
+			self.to_label("Can't find Noita directory")
 
 	def loadgame(self, event):
 		global path, deskpath
@@ -49,16 +49,16 @@ class Block:
 				if '.salakieli' in n:
 					filenames.append(n)
 			if len(filenames) < 3:
-				self.to_label("Ошибка. Файлы повреждены или утеряны")
+				self.to_label("Error, some files are missing!")
 				return None
 			if os.path.exists(path):
 				for i in filenames:
 					fpath = deskpath+'\\' + i
 					dpath = path + '\\' + i
 					shutil.copyfile(fpath, dpath)
-					self.to_label('Игра успешно загружена')
+					self.to_label('Load OK')
 		else:
-			self.to_label("Не могу найти файл сохранения сук")
+			self.to_label("Error, can't find save's folder")
 
 
 
