@@ -1,10 +1,14 @@
+import os, shutil
 from tkinter import *
  
+version = 'NoitaSavesManager v2.07.20'
+
 class BuildWindow:
-	def __init__(self, master, name):
+	def __init__(self, master, name, path=None):
 		self.root = master
+		self.path = path
 		if name == 'main':
-			self.build_main_window(master, name)
+			self.build_main_window(master, version)
 		if name == 'confirm':
 			self.build_confirm_window(master)
 
@@ -65,12 +69,13 @@ class BuildWindow:
 		self.root.destroy()
 
 class Test(BuildWindow):
-	def check_saves(self, path):
-		print(path)
-		if os.path.exists(path):
+
+	def check_saves(self):
+		if os.path.exists(self.path):
+			print('OKOK')
 			return True
 		else:
-			window.to_label('Не могу найти папку Ноиты')
+			self.to_label('Не могу найти папку Ноиты')
 
 	def test(self):
 		print('Gotcha')
@@ -79,12 +84,13 @@ class Test(BuildWindow):
 		self.label['text'] = text
 
 #a = Tk()
-
+uname = os.getlogin()
 #block = BuildWindow(a, 'main')
 path = 'C:\\Users\\{0}\\AppData\\LocalLow\\Nolla_Games_Noita\\save00'.format(uname)
 
 w = Tk()
-x = Test(w, 'main')
-x.to_label("Banana")
+x = Test(w, 'main', path)
+x.check_saves()
+#x.to_label("Banana")
 w.mainloop()
 #a.mainloop()

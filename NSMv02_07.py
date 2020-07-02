@@ -1,8 +1,9 @@
 import os, shutil
-from tkinter import *
+from window_builder import *
 
 version = 'NoitaSavesManager v2.07.20'
 
+#Сохранения (выбор что сохранить) на папки и имена для сейвов
 
 
 class Window:
