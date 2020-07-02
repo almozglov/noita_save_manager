@@ -4,12 +4,15 @@ from tkinter import *
 version = 'NoitaSavesManager v2.07.20'
 
 
+
 class Window:
 	def __init__(self, master):
 		build_window(self, master, version)
+		print(type(self))
 		check_saves(self, path)
 
 	def to_label(self, text):
+		print(type(self))
 		self.text_label['text'] = text
 	
 	def savegame(self, event):
@@ -76,14 +79,15 @@ def build_window(window, root, name):
 
 
 def check_saves(window, path):
+	print(path)
 	if os.path.exists(path):
 		return True
 	else:
 		window.to_label('Не могу найти папку Ноиты')
 
 
-#uname = os.getlogin()
-uname = 'alexander'
+uname = os.getlogin()
+#uname = 'alexander'
 path = 'C:\\Users\\{0}\\AppData\\LocalLow\\Nolla_Games_Noita\\save00'.format(uname)
 deskpath = 'C:\\Users\\{0}\\Desktop\\noitasaves'.format(uname)
 
