@@ -14,9 +14,11 @@ class BuildWindow:
 
 	def build_main_window(self, master, name):
 		self.build_frame(master, name)
-		self.build_label(labels={'mainLabel': ['center', 'black', 'white', 40, [0, 10]]})
-		self.build_buttons(buttons={'Save': ['right', None], 'Load': ['right', self.func]})
-		
+		self.build_label(labels={'mainLabel': ['center',None, None, 40, [0, 10]]})
+		self.build_list()
+		#self.build_label(labels={'mainLabel': ['center', 'black', 'white', 40, [0, 10]]})
+		self.build_buttons(buttons={'Save': ['right', None], 'Load': ['right', self.raise_confirm]})
+
 	def build_confirm_window(self, master):
 		conf_msg = 'Вы уверены, что хотите загрузить сохранённую игру?'
 		self.build_frame(master, 'Confirm')
@@ -33,6 +35,12 @@ class BuildWindow:
 
 		self.rightframe.pack(side='right')
 		self.leftframe.pack(side='left')
+
+
+	def build_list(self):
+		self.listbox = Listbox(self.centerframe)
+		self.listbox.pack()
+
 
 	def build_label(self, labels, text=None):
 		for i in labels:
@@ -56,17 +64,11 @@ class BuildWindow:
 			button.pack(padx = 5, pady = 5)
 
 
-	def func(self):
+	def raise_confirm(self):
 		w = Tk()
 		BuildWindow(w, 'confirm')
 
-	def ok(self):
-		print("ok")
-		self.root.destroy()
 
-	def neok(self):
-		print("neok")
-		self.root.destroy()
 
 class Test(BuildWindow):
 
@@ -77,12 +79,20 @@ class Test(BuildWindow):
 		else:
 			self.to_label('Не могу найти папку Ноиты')
 
-	def test(self):
-		print('Gotcha')
-
 	def to_label(self, text):
 		self.label['text'] = text
 
+	def raise_confirm(self):
+		w = Tk()
+		BuildWindow(w, 'confirm')
+
+	def ok(self):
+		print("ok")
+		self.root.destroy()
+
+	def neok(self):
+		print("neok")
+		self.root.destroy()
 #a = Tk()
 uname = os.getlogin()
 #block = BuildWindow(a, 'main')
@@ -94,3 +104,50 @@ x.check_saves()
 #x.to_label("Banana")
 w.mainloop()
 #a.mainloop()
+
+'''
+Sketch.py
+from tkinter import * 
+ 
+def retrieve():
+	print(listbox.get(listbox.curselection()[0]))
+
+def addnew():
+	x = Tk()
+	fr = Frame(x)
+	fr.pack()
+	label = Label(fr,text = "Введите Имя сохранения")
+	my_entry = Entry(fr, width = 20)
+	my_entry.insert(0,'Сохранение...')
+	Btn = Button(fr, text = "Submit", command = get)
+	label.pack()
+	my_entry.pack()
+	Btn.pack()
+	x.mainloop()
+
+	global t
+	name = t
+	listbox.insert(len(listbox.get(0 , END))+1, name)
+   
+def get():
+	print(my_entry.get())
+	x.destroy()
+
+root = Tk()
+root.geometry("200x220")
+frame = Frame(root)
+frame.pack()
+ 
+label = Label(root,text = "A list of Grocery items.")  
+label.pack()  
+   
+listbox = Listbox(root)  
+   
+   
+listbox.pack() 
+t = ''
+bttn = Button(frame, text = "Submit", command = retrieve)
+btn2 = Button(frame, text = 'Add', command = addnew)
+bttn.pack(side= "bottom")
+btn2.pack()
+root.mainloop()  '''

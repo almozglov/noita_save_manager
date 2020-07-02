@@ -7,11 +7,7 @@ version = 'NoitaSavesManager v2.07.20'
 
 
 class Window:
-	def __init__(self, master):
-		build_window(self, master, version)
-		print(type(self))
-		check_saves(self, path)
-
+	
 	def to_label(self, text):
 		print(type(self))
 		self.text_label['text'] = text
@@ -55,28 +51,6 @@ class Window:
 
 	def confirm(self):
 		con_win = Window(root)
-
-def build_window(window, root, name):
-	root.title(name)
-	#master.geometry("300x150")
-	centerframe = Frame(root)
-	rightframe = Frame(root)
-	leftframe = Frame(root)
-	centerframe.pack()
-
-	rightframe.pack(side=RIGHT)
-	leftframe.pack(side=LEFT)
-
-	window.b_save = Button(rightframe, text='Save')
-	window.b_load = Button(rightframe, text='Load')
-	window.text_label = Label(centerframe, bg='black', fg='white', width=40, pady=10, relief='sunken')
-
-	window.b_save.bind('<Button-1>', window.savegame)
-	window.b_load.bind('<Button-1>', window.loadgame)
-
-	window.text_label.pack()
-	window.b_save.pack(padx = 5, pady = 5)
-	window.b_load.pack(padx = 5, pady = 5)
 
 
 def check_saves(window, path):
