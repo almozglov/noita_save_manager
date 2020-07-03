@@ -23,15 +23,7 @@ class BuildWindow:
 		self.build_frame(master, name)
 		self.build_label(labels={'mainLabel': ['center',None, None, 40, [0, 10]]}, text = 'Hello')
 		self.build_list()
-		#self.build_label(labels={'mainLabel': ['center', 'black', 'white', 40, [0, 10]]})
-		#self.build_buttons(buttons={'Save': ['right', None], 'Load': ['right', self.raise_confirm]})
-
-	'''def build_confirm_window(self, master):
-		conf_msg = 'Вы уверены, что хотите загрузить сохранённую игру?'
-		self.build_frame(master, 'Confirm')
-		self.build_label({'confirmlabel': ['center', None, None, 10, [0, 20]]}, conf_msg)
-		#self.build_buttons(buttons = {'Ok': ['center', self.ok], 'Cancel': ['center', self.neok]})
-	'''
+		
 	def build_frame(self, master, name):
 		master.title(name)
 		#master.geometry("300x150")
