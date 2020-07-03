@@ -26,7 +26,7 @@ class BuildWindow:
 		
 	def build_frame(self, master, name):
 		master.title(name)
-		#master.geometry("300x150")
+		master.geometry("500x300")
 		self.centerframe = Frame(master)
 		self.rightframe = Frame(master)
 		self.leftframe = Frame(master)
@@ -36,7 +36,7 @@ class BuildWindow:
 		self.leftframe.pack(side='left')
 
 	def build_list(self):
-		self.listbox = Listbox(self.centerframe)
+		self.listbox = Listbox(self.centerframe, width = 100)
 		self.listbox.pack()
 
 	def build_label(self, labels, text=None):
@@ -69,49 +69,3 @@ class BuildWindow:
 	def build_entry(self, text=None):
 		self.entry = Entry(self.centerframe, width=20)
 		self.entry.pack()
-'''
-Sketch.py
-from tkinter import * 
- 
-def retrieve():
-	print(listbox.get(listbox.curselection()[0]))
-
-def addnew():
-	x = Tk()
-	fr = Frame(x)
-	fr.pack()
-	label = Label(fr,text = "Введите Имя сохранения")
-	my_entry = Entry(fr, width = 20)
-	my_entry.insert(0,'Сохранение...')
-	Btn = Button(fr, text = "Submit", command = get)
-	label.pack()
-	my_entry.pack()
-	Btn.pack()
-	x.mainloop()
-
-	global t
-	name = t
-	listbox.insert(len(listbox.get(0 , END))+1, name)
-   
-def get():
-	print(my_entry.get())
-	x.destroy()
-
-root = Tk()
-root.geometry("200x220")
-frame = Frame(root)
-frame.pack()
- 
-label = Label(root,text = "A list of Grocery items.")  
-label.pack()  
-   
-listbox = Listbox(root)  
-   
-   
-listbox.pack() 
-t = ''
-bttn = Button(frame, text = "Submit", command = retrieve)
-btn2 = Button(frame, text = 'Add', command = addnew)
-bttn.pack(side= "bottom")
-btn2.pack()
-root.mainloop()  '''

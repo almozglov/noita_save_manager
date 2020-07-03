@@ -48,13 +48,13 @@ class Window(BuildWindow):
 			for n in save:
 				if '.salakieli' in n:
 					filenames.append(n)
-			if os.path.exists(self.deskpath +  '/' + name):
+			if os.path.exists(self.deskpath +  '\\' + name):
 				pass
 			else:		
-				os.mkdir(self.deskpath +  '/' + name, mode=0o777)
+				os.mkdir(self.deskpath +  '\\' + name, mode=0o777)
 			for i in filenames:
-					fpath = self.path+'/' + i
-					dpath = self.deskpath + '/' + name +  '/' + i
+					fpath = self.path+'\\' + i
+					dpath = self.deskpath + '\\' + name +  '\\' + i
 					shutil.copyfile(fpath, dpath)
 					self.to_label('Game Saved')
 
@@ -96,12 +96,12 @@ class Window(BuildWindow):
 			self.to_label('Не могу найти папку Ноиты')
 
 
-#uname = os.getlogin()
-uname = 'alexander'
-#path = 'C:\\Users\\{0}\\AppData\\LocalLow\\Nolla_Games_Noita\\save00'.format(uname)
-#deskpath = 'C:\\Users\\{0}\\Desktop\\noitasaves'.format(uname)
-path = '/home/{0}/Desktop/test'.format(uname)
-deskpath =  '/home/{0}/Desktop/test2'.format(uname)
+uname = os.getlogin()
+#uname = 'alexander'
+path = 'C:\\Users\\{0}\\AppData\\LocalLow\\Nolla_Games_Noita\\save00'.format(uname)
+deskpath = 'C:\\Users\\{0}\\Desktop\\noitasaves'.format(uname)
+#path = '/home/{0}/Desktop/test'.format(uname)
+#deskpath =  '/home/{0}/Desktop/test2'.format(uname)
 
 root = Tk()
 
