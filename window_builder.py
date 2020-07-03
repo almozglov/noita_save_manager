@@ -4,27 +4,34 @@ from tkinter import *
 version = 'NoitaSavesManager v2.07.20'
 
 class BuildWindow:
-	def __init__(self, master, name, path=None):
+	def __init__(self, master, name, path=None, deskpath = None):
 		self.root = master
 		self.path = path
+		self.deskpath = deskpath
+		self.name = name
 		if name == 'main':
 			self.build_main_window(master, version)
 		if name == 'confirm':
 			self.build_confirm_window(master)
+		if name == 'save':
+			self.build_save_window(master)
+
+	def __str__(self):
+		return self.name
 
 	def build_main_window(self, master, name):
 		self.build_frame(master, name)
-		self.build_label(labels={'mainLabel': ['center',None, None, 40, [0, 10]]})
+		self.build_label(labels={'mainLabel': ['center',None, None, 40, [0, 10]]}, text = 'Hello')
 		self.build_list()
 		#self.build_label(labels={'mainLabel': ['center', 'black', 'white', 40, [0, 10]]})
-		self.build_buttons(buttons={'Save': ['right', None], 'Load': ['right', self.raise_confirm]})
+		#self.build_buttons(buttons={'Save': ['right', None], 'Load': ['right', self.raise_confirm]})
 
-	def build_confirm_window(self, master):
+	'''def build_confirm_window(self, master):
 		conf_msg = 'Вы уверены, что хотите загрузить сохранённую игру?'
 		self.build_frame(master, 'Confirm')
 		self.build_label({'confirmlabel': ['center', None, None, 10, [0, 20]]}, conf_msg)
-		self.build_buttons(buttons = {'Ok': ['center', self.ok], 'Cancel': ['center', self.neok]})
-	
+		#self.build_buttons(buttons = {'Ok': ['center', self.ok], 'Cancel': ['center', self.neok]})
+	'''
 	def build_frame(self, master, name):
 		master.title(name)
 		#master.geometry("300x150")
@@ -36,11 +43,9 @@ class BuildWindow:
 		self.rightframe.pack(side='right')
 		self.leftframe.pack(side='left')
 
-
 	def build_list(self):
 		self.listbox = Listbox(self.centerframe)
 		self.listbox.pack()
-
 
 	def build_label(self, labels, text=None):
 		for i in labels:
@@ -62,49 +67,16 @@ class BuildWindow:
 			if buttons[i][0] == 'center':
 				button = Button(self.centerframe, text = i, command = buttons[i][1])
 			button.pack(padx = 5, pady = 5)
+		return button
 
+	def add_to_list(self, item_name, num=0):
+		if num==0:
+			num = len(self.listbox.get(0 , END))+1
+		self.listbox.insert(num, item_name)
 
-	def raise_confirm(self):
-		w = Tk()
-		BuildWindow(w, 'confirm')
-
-
-
-class Test(BuildWindow):
-
-	def check_saves(self):
-		if os.path.exists(self.path):
-			print('OKOK')
-			return True
-		else:
-			self.to_label('Не могу найти папку Ноиты')
-
-	def to_label(self, text):
-		self.label['text'] = text
-
-	def raise_confirm(self):
-		w = Tk()
-		BuildWindow(w, 'confirm')
-
-	def ok(self):
-		print("ok")
-		self.root.destroy()
-
-	def neok(self):
-		print("neok")
-		self.root.destroy()
-#a = Tk()
-uname = os.getlogin()
-#block = BuildWindow(a, 'main')
-path = 'C:\\Users\\{0}\\AppData\\LocalLow\\Nolla_Games_Noita\\save00'.format(uname)
-
-w = Tk()
-x = Test(w, 'main', path)
-x.check_saves()
-#x.to_label("Banana")
-w.mainloop()
-#a.mainloop()
-
+	def build_entry(self, text=None):
+		self.entry = Entry(self.centerframe, width=20)
+		self.entry.pack()
 '''
 Sketch.py
 from tkinter import * 
