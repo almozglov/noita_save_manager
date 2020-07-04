@@ -1,7 +1,7 @@
 import os, shutil
 from tkinter import *
  
-version = 'NoitaSavesManager v2.07.20'
+version = 'NoitaSavesManager v4.07.20'
 
 class BuildWindow:
 	def __init__(self, master, name, path=None, deskpath = None):
@@ -20,13 +20,16 @@ class BuildWindow:
 		return self.name
 
 	def build_main_window(self, master, name):
+		msg_main = 'Список сохранений'
 		self.build_frame(master, name)
-		self.build_label(labels={'mainLabel': ['center',None, None, 40, [0, 10]]}, text = 'Hello')
+		self.build_label(labels={'mainLabel': ['center',None, None, 40, [0, 10]]}, text = msg_main)
+		#self.build_label(labels={'mainLabel': ['left',None, None, 40, [0, 10]]}, text = msg_info)
 		self.build_list()
 		
 	def build_frame(self, master, name):
 		master.title(name)
-		master.geometry("500x300")
+		if self.name == 'main':
+			master.geometry("500x300")
 		self.centerframe = Frame(master)
 		self.rightframe = Frame(master)
 		self.leftframe = Frame(master)
@@ -36,7 +39,7 @@ class BuildWindow:
 		self.leftframe.pack(side='left')
 
 	def build_list(self):
-		self.listbox = Listbox(self.centerframe, width = 100)
+		self.listbox = Listbox(self.centerframe, width = 80)
 		self.listbox.pack()
 
 	def build_label(self, labels, text=None):
@@ -53,12 +56,12 @@ class BuildWindow:
 	def build_buttons(self, buttons):
 		for i in buttons:
 			if buttons[i][0] == 'right':
-				button = Button(self.rightframe, text=i, command = buttons[i][1])
+				button = Button(self.rightframe, text=i, command = buttons[i][1], width=10)
 			if buttons[i][0] == 'left':
-				b_save = Button(self.leftframe, text=i, command = buttons[i][1])
+				b_save = Button(self.leftframe, text=i, command = buttons[i][1], width=10)
 			if buttons[i][0] == 'center':
-				button = Button(self.centerframe, text = i, command = buttons[i][1])
-			button.pack(padx = 5, pady = 5)
+				button = Button(self.centerframe, text = i, command = buttons[i][1], width=10)
+			button.pack(padx = 5, pady = 2)
 		return button
 
 	def add_to_list(self, item_name, num=0):

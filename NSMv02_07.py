@@ -2,7 +2,7 @@ import os, shutil
 from tkinter import *
 from window_builder import BuildWindow
 
-version = 'NoitaSavesManager v3.07.20'
+
 
 class Window(BuildWindow):
 
@@ -40,7 +40,8 @@ class Window(BuildWindow):
 		self.label['text'] = text
 	
 	def savegame(self, name):
-		self.add_to_list(name)
+		if name not in os.listdir(self.deskpath):
+			self.add_to_list(name)
 		if self.check_saves(self.path):
 			os.chdir(self.path)
 			save = os.listdir()
@@ -58,9 +59,9 @@ class Window(BuildWindow):
 					shutil.copyfile(fpath, dpath)
 					self.to_label('Game Saved')
 
+
 	def loadgame(self):
 		savename = self.listbox.get(self.listbox.curselection()[0])
-		print(savename)
 		if self.check_saves(self.deskpath):
 			os.chdir(self.deskpath)
 			save = os.listdir()
